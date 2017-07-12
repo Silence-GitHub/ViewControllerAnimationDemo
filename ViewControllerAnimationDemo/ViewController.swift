@@ -12,12 +12,21 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        view.backgroundColor = UIColor.blue.withAlphaComponent(0.5)
+        
+        let backButton = UIButton(frame: CGRect(x: view.bounds.width / 2 - 50,
+                                                y: view.bounds.height / 2 - 25,
+                                                width: 100,
+                                                height: 50))
+        backButton.backgroundColor = .red
+        backButton.setTitle("Back", for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+        view.addSubview(backButton)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @objc private func backButtonClicked(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
 
