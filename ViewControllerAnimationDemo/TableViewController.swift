@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,8 @@ class TableViewController: UITableViewController {
                                     "Over current context",
                                     "Flip horizontal",
                                     "Cross dissolve",
-                                    "Partial curl"]
+                                    "Partial curl",
+                                    "Custom transition"]
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles.count
@@ -57,10 +58,26 @@ class TableViewController: UITableViewController {
             vc.modalTransitionStyle = .crossDissolve
         case 5:
             vc.modalTransitionStyle = .partialCurl
+        case 6:
+            vc.transitioningDelegate = self
         default:
             break
         }
         present(vc, animated: true, completion: nil)
+    }
+    
+    // MARK: - View controller transitioning delegate
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = VCTransitionAnimator()
+        animator.presenting = true
+        return animator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = VCTransitionAnimator()
+        animator.presenting = false
+        return animator
     }
 
 }

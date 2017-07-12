@@ -15,6 +15,7 @@
 		4A83B6C21F15F8C9001CA074 /* ViewControllerAnimationDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83B6C11F15F8C9001CA074 /* ViewControllerAnimationDemoTests.swift */; };
 		4A83B6CD1F15F8C9001CA074 /* ViewControllerAnimationDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83B6CC1F15F8C9001CA074 /* ViewControllerAnimationDemoUITests.swift */; };
 		4A83B6DB1F15FE33001CA074 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83B6DA1F15FE33001CA074 /* TableViewController.swift */; };
+		4A83B6DD1F164194001CA074 /* VCTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A83B6DC1F164194001CA074 /* VCTransitionAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4A83B6CC1F15F8C9001CA074 /* ViewControllerAnimationDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAnimationDemoUITests.swift; sourceTree = "<group>"; };
 		4A83B6CE1F15F8C9001CA074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A83B6DA1F15FE33001CA074 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		4A83B6DC1F164194001CA074 /* VCTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCTransitionAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				4A83B6AC1F15F8C9001CA074 /* AppDelegate.swift */,
 				4A83B6AE1F15F8C9001CA074 /* ViewController.swift */,
 				4A83B6DA1F15FE33001CA074 /* TableViewController.swift */,
+				4A83B6DC1F164194001CA074 /* VCTransitionAnimator.swift */,
 				4A83B6B01F15F8C9001CA074 /* Main.storyboard */,
 				4A83B6B31F15F8C9001CA074 /* Assets.xcassets */,
 				4A83B6B51F15F8C9001CA074 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A83B6DD1F164194001CA074 /* VCTransitionAnimator.swift in Sources */,
 				4A83B6AF1F15F8C9001CA074 /* ViewController.swift in Sources */,
 				4A83B6DB1F15FE33001CA074 /* TableViewController.swift in Sources */,
 				4A83B6AD1F15F8C9001CA074 /* AppDelegate.swift in Sources */,
@@ -511,6 +515,7 @@
 				4A83B6D31F15F8C9001CA074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A83B6D41F15F8C9001CA074 /* Build configuration list for PBXNativeTarget "ViewControllerAnimationDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +524,7 @@
 				4A83B6D61F15F8C9001CA074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4A83B6D71F15F8C9001CA074 /* Build configuration list for PBXNativeTarget "ViewControllerAnimationDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +533,7 @@
 				4A83B6D91F15F8C9001CA074 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
