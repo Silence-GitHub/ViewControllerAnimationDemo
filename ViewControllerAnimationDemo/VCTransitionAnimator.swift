@@ -55,6 +55,7 @@ class VCTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             toView.frame = toFinalFrame
             
         }, completion: { (_) in
+            // Notify UIKit that the transition has finished
             let complete = !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(complete)
         })
