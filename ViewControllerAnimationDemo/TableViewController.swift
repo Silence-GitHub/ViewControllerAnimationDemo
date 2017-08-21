@@ -10,7 +10,8 @@ import UIKit
 
 class TableViewController: UITableViewController, UIViewControllerTransitioningDelegate {
 
-    private var interactionController: UIPercentDrivenInteractiveTransition?
+    private var presentInteractionController: UIPercentDrivenInteractiveTransition?
+    private weak var dismissInteractionController: UIPercentDrivenInteractiveTransition?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,29 +19,39 @@ class TableViewController: UITableViewController, UIViewControllerTransitioningD
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.description())
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         
-        let interactView = UIView(frame: CGRect(x: 0, y: view.bounds.height - 100, width: view.bounds.width, height: 100))
+        let interactView = UIView(frame: CGRect(x: 0, y: view.bounds.height - 164, width: view.bounds.width, height: 100))
         interactView.backgroundColor = UIColor.green.withAlphaComponent(0.5)
         view.addSubview(interactView)
+        
         let pan = UIPanGestureRecognizer(target: self, action: #selector(interactViewPanned(_:)))
         interactView.addGestureRecognizer(pan)
+        
+        let label = UILabel()
+        label.text = "Swipe right"
+        label.sizeToFit()
+        label.center = CGPoint(x: interactView.bounds.width / 2, y: interactView.bounds.size.height / 2)
+        interactView.addSubview(label)
     }
     
     @objc private func interactViewPanned(_ pan: UIPanGestureRecognizer) {
         switch pan.state {
         case .began:
-            interactionController = UIPercentDrivenInteractiveTransition()
+            presentInteractionController = UIPercentDrivenInteractiveTransition()
             
             let vc = ViewController()
             vc.transitioningDelegate = self;
+            let dismissController = UIPercentDrivenInteractiveTransition()
+            dismissInteractionController = dismissController
+            vc.dismissInteractionController = dismissController
             present(vc, animated: true, completion: nil)
             
         case .changed:
-            guard let controller = interactionController else { return }
+            guard let controller = presentInteractionController else { return }
             let percent = max(pan.translation(in: pan.view).x, 0) / view.bounds.width
             controller.update(percent)
             
         case .cancelled, .ended:
-            guard let controller = interactionController else { return }
+            guard let controller = presentInteractionController else { return }
             // Slow down animation before finishing or canceling
             // There will be UI bug without slowing down
             controller.completionSpeed = 0.9
@@ -51,7 +62,7 @@ class TableViewController: UITableViewController, UIViewControllerTransitioningD
                 // Cancel
                 controller.cancel()
             }
-            interactionController = nil
+            presentInteractionController = nil
         default:
             break
         }
@@ -122,7 +133,11 @@ class TableViewController: UITableViewController, UIViewControllerTransitioningD
     }
     
     func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return interactionController
+        return presentInteractionController
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return dismissInteractionController
     }
 
 }
