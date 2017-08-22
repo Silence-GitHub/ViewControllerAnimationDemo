@@ -42,10 +42,12 @@ class ViewController: UIViewController {
     @objc private func viewPanned(_ pan: UIPanGestureRecognizer) {
         switch pan.state {
         case .began:
+            // Start dismissing
             dismiss(animated: true, completion: nil)
             
         case .changed:
             guard let controller = dismissInteractionController else { return }
+            // Update the completion percentage of the transition
             let percent = -min(pan.translation(in: view).x, 0) / view.bounds.width
             controller.update(percent)
             
@@ -55,8 +57,10 @@ class ViewController: UIViewController {
             // There will be UI bug without slowing down
             controller.completionSpeed = 0.9
             if -min(pan.translation(in: view).x, 0) / view.bounds.width > 0.5 {
+                // Finish dismissing
                 controller.finish()
             } else {
+                // Cancel dismissing
                 controller.cancel()
             }
             

@@ -37,7 +37,7 @@ class TableViewController: UITableViewController, UIViewControllerTransitioningD
         switch pan.state {
         case .began:
             presentInteractionController = UIPercentDrivenInteractiveTransition()
-            
+            // Start presenting
             let vc = ViewController()
             vc.transitioningDelegate = self;
             let dismissController = UIPercentDrivenInteractiveTransition()
@@ -47,6 +47,7 @@ class TableViewController: UITableViewController, UIViewControllerTransitioningD
             
         case .changed:
             guard let controller = presentInteractionController else { return }
+            // Update the completion percentage of the transition
             let percent = max(pan.translation(in: pan.view).x, 0) / view.bounds.width
             controller.update(percent)
             
@@ -56,10 +57,10 @@ class TableViewController: UITableViewController, UIViewControllerTransitioningD
             // There will be UI bug without slowing down
             controller.completionSpeed = 0.9
             if max(pan.translation(in: pan.view).x, 0) / view.bounds.width > 0.5 {
-                // Finish
+                // Finish presenting
                 controller.finish()
             } else {
-                // Cancel
+                // Cancel presenting
                 controller.cancel()
             }
             presentInteractionController = nil
